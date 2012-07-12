@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_filter :cart, :only => [:index, :show, :new, :edit]
   # GET /carts
   # GET /carts.json
   def index
@@ -82,8 +83,14 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to store_url, :notice => 'Your cart is currently empty' }
+      format.html { redirect_to store_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def cart
+    @cart = current_cart
   end
 end

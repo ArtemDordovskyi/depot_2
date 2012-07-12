@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_filter :cart, :only => [:index, :show, :new, :edit]
   # GET /products
   # GET /products.json
   def index
@@ -79,5 +80,11 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def cart
+    @cart = current_cart
   end
 end
