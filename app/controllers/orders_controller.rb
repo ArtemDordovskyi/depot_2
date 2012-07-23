@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_filter :authorize, only: [:new, :create]
+
   #require 'will_paginate/array'
   # GET /orders
   # GET /orders.json
