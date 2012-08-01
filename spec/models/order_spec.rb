@@ -1,5 +1,14 @@
 require 'spec_helper'
+require 'cart'
+require 'line_item'
 
 describe Order do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let!(:order){create :order}
+
+  it "adding line items from cart" do
+    cart = Cart.create!
+    order.add_line_items_from_cart(cart).should 
+  end
+
 end
