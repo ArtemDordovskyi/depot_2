@@ -11,8 +11,11 @@
     <%=sanitize product.description %>
     <div class="price_line" >
       <span class="price"><%= number_to_currency(product.price) %></span>
-      <%= button_to t('.add_html') , line_items_path(:product_id => product), :remote => true %>
+      <% if session[:user_id] %>
+        <%= button_to t('.add_html'), line_items_path(:product_id => product), :remote => true %>
+      <% else %>
+        <%= button_to t('.add_html'), login_path, :notice => "Only users can be ordered products" %>
+      <% end %>
     </div>
   </div>
 <% end %>
-
